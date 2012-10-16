@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+require 'open-uri'
+require 'json'
+
+puts "Content-type: text/html"
+puts
+puts "Hello dynamic world -- #{Time.now}"
+
+puts "<!DOCTYPE html>"
+puts "<html>"
+puts "<script language=\"JavaScript\">"
+puts "// This script sets OSName variable as follows:"
+puts "// \"Windows\"    for all versions of Windows"
+puts "// \"MacOS\"      for all versions of Macintosh OS"
+puts "// \"Linux\"      for all versions of Linux"
+puts "// \"UNIX\"       for all other UNIX flavors "
+puts "// \"Unknown OS\" indicates failure to detect the OS"
+
+puts "if (navigator.appVersion.indexOf(\"Mac\")!=-1) window.location=(\"../MacDetect.html\");"
+puts "if (navigator.appVersion.indexOf(\"X11\")!=-1) window.location=(\"../MacDetect.html\");"
+
+puts "</script>"
+puts "<head>"
+puts "<title>Anti-Mac.Org</title>"
+puts "<link rel=\"shortcut icon\" href=\"../ico.ico\" >"
+puts "<meta charset=\"utf-8\">"
+puts "  <link rel=\"stylesheet\" type=\"text/css\" href=\"../stylesheets/reset.css\">"
+puts "  <link rel=\"stylesheet\" type=\"text/css\" href=\"../stylesheets/default.css\">"
+
+puts "</head>"
+
+puts "<body>"
+puts "<header>"
+puts "<hgroup>"
+puts " <h1 id = \"Top\"><a href=\"../index.html\" target=\"Homepage\"><img src=\"../1.jpg\" height=\"48\" width=\"48\" alt=\"AntiMac\" /></a>Anti-Mac.Org</h1>"
+
+puts "<h2> Finally, A social group for those who hate Mac </h2>"
+puts "</hgroup>"
+puts "<nav>"
+puts "	<ul>"
+puts "		<li><a href=\"../index.html\">Home</a></li>"
+puts "		<li><a href=\"../services/flickr.html\">Images</a></li>"
+puts "		<li><a href=\"../videos.html\">Videos</a></li>"
+puts "		<li><a href=\"../login.html\">Login</a></li>"
+puts "		<li><a href=\"../users/new.html\">Register</a></li>"
+puts "		<li><a href=\"../contact_us.html\">Contact</a></li>"
+puts "		<li><a href=\"../about_us.html\">About</a> </li>"
+puts "	</ul>"
+puts "</nav>"
+puts "<h3>"
+puts "<form action=\"../index.html\" method=\"get\">"
+puts "<input type=\"search\" placeholder=\"search\">"
+puts "</form>"
+puts "</hgroup>"
+puts "</header> "
+
+
+puts "<div id=\"content-area\">"
+
+
+url = open("http://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=4377ca65bc3b380fa41229566388b7bd&per_page=21&page=1&nojsoncallback=1&format=json")
+raw = JSON.parse(url.read)
+info = raw['photos']
+images = info['photo']
+
+$v = 0;
+while $v < 20 do
+puts "<center>"
+puts "<i>"
+if((images[$v]['title']) == "") 
+    puts "<p>"
+    puts "Untitled"
+    puts "</br>"
+    puts "<a href=\"http://www.flickr.com/photos/#{images[$v]['owner']}/#{images[$v]['id']}\">"
+    puts "<img src=\"http://farm#{images[$v]['farm']}.staticflickr.com/#{images[$v]['server']}/#{images[$v]['id']}_#{images[$v]['secret']}_s.jpg\">"
+    puts "</p>"
+    }
+else
+
+    puts "<p>"
+    puts "#{images[$v]['title']}"
+    puts "</br>"
+    puts "<a href=\"http://www.flickr.com/photos/#{images[$v]['owner']}/#{images[$v]['id']}\">"
+    puts "<img src=\"http://farm#{images[$v]['farm']}.staticflickr.com/#{images[$v]['server']}/#{images[$v]['id']}_#{images[$v]['secret']}_s.jpg\">"
+    puts "</p>"
+    end
+    
+puts "</a></i></br>"
+$v +=1
+end;
+
+puts "</div>"
+puts "   <footer id=\"footer\">"
+puts "    &copy; Copyright? Nah, open source for reference"
+puts "  </footer>"
+puts "</body>"
+puts "</html>"
+$end
