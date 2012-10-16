@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<script language="JavaScript">
+// This script sets OSName variable as follows:
+// "Windows"    for all versions of Windows
+// "MacOS"      for all versions of Macintosh OS
+// "Linux"      for all versions of Linux
+// "UNIX"       for all other UNIX flavors 
+// "Unknown OS" indicates failure to detect the OS
+
+if (navigator.appVersion.indexOf("Mac")!=-1) window.location=("../MacDetect.html");
+if (navigator.appVersion.indexOf("X11")!=-1) window.location=("../MacDetect.html");
+
+</script>
+<head>
+<title>Anti-Mac.Org</title>
+<link rel="shortcut icon" href="../ico.ico" >
+<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/reset.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+
+</head>
+
+<body>
+<header>
+<hgroup>
+ <h1 id = "Top"><a href="../index.html" target="Homepage"><img src="../1.jpg" height="48" width="48" alt="AntiMac" /></a>Anti-Mac.Org<h1>
+
+<h2> Finally, A social group for those who hate Mac <h2>
+</hgroup>
+<nav>
+	<ul>
+		<li><a href="../index.html">Home</a></li>
+		<li><a href="../services/flickr.html">Images</a></li>
+		<li><a href="../videos.html">Videos</a></li>
+		<li><a href="../login.html">Login</a></li>
+		<li><a href="new.html">Register</a></li>
+		<li><a href="../contact_us.html">Contact</a></li>
+		<li><a href="../about_us.html">About</a> </li>
+	</ul>
+</nav>
+<form action="../index.html" method="get">
+<input type="search" placeholder="search">
+</form>
+</hgroup>
+</header> 
+<div id="textcenter">
+<p> Edit Your Information
+</div>
+
+<div id="edituser">
+<p> Here you can edit your user information:</br>
+<p> Be sure to fill all the information boxes you want changed.</p>
+<form name="Register" action="joe_user.html" method="get">
+Username:<input type="text" name="user_name" value="" maxlength="20"></br><br>
+Password:<input type="text" name="user_password" value="" maxlength="20"></br><br>
+Email:<input type="text" name="user_email" value="" maxlength="20"></br><br>
+First Name:<input type="text" name="user_firstname" value="" maxlength="20"></br><br>
+Last: Name:<input type="text" name="user_lastname" value="" maxlength="20"></br>
+<input type="submit" value="Submit">
+  <input type="button" name="resetbutton" onclick="formReset()" value="Reset"><br><br>
+</form>
+<p> please allow us time to change your information!<p>
+<p> thankyou for your patience</p>
+</div>
+   <footer id="footer">
+    &copy; Copyright? Nah, open source for reference
+  </footer>
+</body>
+</html>
